@@ -19,7 +19,6 @@ module.exports = function (app) {
   // Load example page and pass in an example by id
   app.get("/providers", function(req, res) {
       res.render("providers");
-
   });
 
   // Render 404 page for any unmatched routes
