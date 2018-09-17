@@ -9,3 +9,22 @@ html, body {
   max-width: 900px;
   margin: 40px auto;
 }
+
+nav.navbar {
+	margin-bottom: 2rem;
+}
+
+a.navbar-brand {
+	margin-left:4rem;
+	font-size: 1.7em;
+	font-weight: 700;
+}
+
+.navbar-text {
+	margin-right:4rem;
+}
+
+.dropdown {
+	margin-top: 1rem;
+}
+
