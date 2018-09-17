@@ -16,9 +16,27 @@ var API = {
       data: JSON.stringify(example)
     });
   },
-  getExamples: function() {
+  getProvider: function() {
     return $.ajax({
-      url: "api/examples",
+      url: "/api/:providerid",
+      type: "GET"
+    });
+  },
+  getProviders: function() {
+    return $.ajax({
+      url: "/api/providers",
+      type: "GET"
+    });
+  },
+  getClients: function() {
+    return $.ajax({
+      url: "/api/clients",
+      type: "GET"
+    });
+  },
+  getEvents: function() {
+    return $.ajax({
+      url: "/api/events",
       type: "GET"
     });
   },
