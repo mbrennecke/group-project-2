@@ -2,7 +2,7 @@ $(function() {
 
   $('#calendar').fullCalendar({
     header: {
-      left: 'month,agendaWeek,agendaDay custom1',
+      left: 'month,agendaWeek,agendaDay, custom1',
       center: 'title',
       right: 'custom2 prevYear,prev,next,nextYear'
     },
