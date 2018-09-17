@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 $("#new-client").on("click", function(){
   '<form action="/action_page.php">'+
         '<div class="form-group">'+
@@ -21,9 +20,6 @@ $("#new-client").on("click", function(){
         '<button type="submit" class="btn btn-default">Submit</button>'+
     '</form>'+
 });
-=======
-$("#new-client").on("click", function(){});
->>>>>>> 2d9fc70a6b743e47b05e23a2151eb3487b45787e
 
 $("#existing-client").on("click", function(){
 	$("#client-ui").html('<div class="dropdown">' +
