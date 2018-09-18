@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
 
   $('#calendar').fullCalendar({
     header: {
@@ -14,13 +14,13 @@ $(function() {
     customButtons: {
       custom1: {
         text: 'custom 1',
-        click: function() {
+        click: function () {
           alert('clicked custom button 1!');
         }
       },
       custom2: {
         text: 'custom 2',
-        click: function() {
+        click: function () {
           alert('clicked custom button 2!');
         }
       }
@@ -44,7 +44,7 @@ $(function() {
       overlap: false,
       color: 'green',
       textColor: 'white'
-    },{
+    }, {
       title: 'dynamic event three',
       allDay: false,
       start: '20180918T120000Z',
@@ -52,7 +52,7 @@ $(function() {
       overlap: false,
       color: 'blue',
       textColor: 'white'
-    },{
+    }, {
       title: 'dynamic event four',
       allDay: false,
       start: '20180917T100000Z',
@@ -62,5 +62,25 @@ $(function() {
       textColor: 'white'
     }
   ]);
+
+});
+
+$("#userSubmit").on("click", function (event) {
+  event.preventDefault();
+
+  var userData = {
+    firstname: $("#fname").val(),
+    lastname: $("#lname").val(),
+    email: $("#email").val(),
+    phone: $("#phone_num").val(),
+  };
+
+  console.table(userData);
+
+  $.ajax({
+    url: "/api/client",
+    method: "POST",
+    data: userData,
+  });
 
 });
