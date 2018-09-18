@@ -2,10 +2,13 @@ var db = require("../models");
 
 module.exports = function(app) {
   app.get("/api/provider/:id", function(req, res) {
-    db.providers.findOne({ where: { id: req.params.id } }).then(function(dbProvider) {
-      var busHours = JSON.parse(dbProvider.businessHours);
-      console.log(busHours);
-      res.json(dbProvider);
+    db.events.findAll({
+      where: { providerId: req.params.id }}).then(function(dbProvider) {
+      // var busHours = JSON.parse(dbProvider.businessHours);
+      // var proSked = { proSked: dbProvider };
+      var id = { id: req.params.id };
+      console.log(dbProvider);
+      res.render("provider", id);
     });
   });
 
@@ -30,6 +33,13 @@ module.exports = function(app) {
       res.json(dbEvents);
     });
   });
+
+  app.get("/api/events/:id", function(req, res) {
+    db.events.findAll({ where: { id: req.params.id } })
+    .then(function(events) {
+      res.json(events);
+    })
+  })
 
   // Create a new example
   app.post("/api/provider", function(req, res) {

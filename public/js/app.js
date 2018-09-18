@@ -1,6 +1,4 @@
 
-
-
 $(document).on("click", "#newProviderForm", function(event){
 	event.preventDefault();
 	
