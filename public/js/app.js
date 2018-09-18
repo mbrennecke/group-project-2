@@ -68,16 +68,13 @@ $(function() {
 
 $(document).on("click", "#newProviderForm", function(event){
 	event.preventDefault();
-	var firstname = $("#firstname").val().trim();
-	var lastname = $("#lastname").val().trim();
-	var email = $("#email").val().trim();
+	
 	var phone = $("#phone").val().trim();
 	phone = phone.replace(/[^\d]/g, ''); 
+	
 	var address = $("#address1").val().trim();
 	address += " " + $("#address2").val().trim();
-	var city = $("#city").val().trim();
-	var state = $("#state").val().trim();
-	var zip = $("#zip").val().trim();
+	
 	var dow = [];
 	for (var i=1;i<8;i++){
 		var checkbox = "#" + "checkbox" + i;
@@ -87,23 +84,46 @@ $(document).on("click", "#newProviderForm", function(event){
 		dow.push(day);
 		}
 	}
-	var starttime = $("#start").val().trim();
-	var endtime = $("#start").val().trim();
 	
-	var newObj = {
-		firstname: firstname,
-		lastname: lastname,
-		email: email,
-		phone: phone,
-		address: address,
-		city: city,
-		state: state,
-		zip: zip,
-		dow: dow,
-		start: starttime,
-		end: endtime
+	var providerData = {
+	firstname: $("#firstname").val().trim(),
+	lastname: $("#lastname").val().trim(),
+	email: $("#email").val().trim(),
+	phone: phone, 
+	address: address,
+	city: $("#city").val().trim(),
+	state: $("#state").val().trim(),
+	zip: $("#zip").val().trim(),
+	dow: dow,
+	starttime: $("#start").val().trim(),
+	endtime: $("#start").val().trim()
 	}
 	
-	console.log(newObj);
+	console.log(providerData);
 	
+	$.ajax({
+    url: "/api/provider",
+    method: "POST",
+    data: providerData,
+  });
+	
+});
+
+
+$("#clientsubmit").on("click", function (event) {
+  event.preventDefault();
+
+  var clientData = {
+    firstname: $("#fname").val(),
+    lastname: $("#lname").val(),
+    email: $("#email").val(),
+    phone: $("#phone_num").val(),
+  };
+
+  $.ajax({
+    url: "/api/client",
+    method: "POST",
+    data: clientData,
+  });
+
 });
