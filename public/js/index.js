@@ -2,12 +2,12 @@ $("#new-client").on("click", function(){
 	$("#client-ui").html('<form><div class="row"><div class="col-sm-3">' +
 	'<div class="form-group">' +
 		'<label for="clientfirstname">First name</label>' +
-		'<input type="password" class="form-control" id="clientfirstname" placeholder="">' +
+		'<input type="text" class="form-control" id="clientfirstname" placeholder="">' +
 	 '</div></div>' +
 	  '<div class="col-sm-3">' +
 	  '<div class="form-group">' +
 		'<label for="clientlastname">Last name</label>' +
-		'<input type="password" class="form-control" id="clientlastname" placeholder="">' +
+		'<input type="text" class="form-control" id="clientlastname" placeholder="">' +
 	  '</div></div></div>' +
 	  '<div class="row">' +
 	'<div class="col-sm-3">' +
