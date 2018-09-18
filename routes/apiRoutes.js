@@ -3,15 +3,15 @@ var db = require("../models");
 module.exports = function(app) {
   app.get("/api/provider/:id", function(req, res) {
     db.providers.findOne({ where: { id: req.params.id } }).then(function(dbProvider) {
-      // var busHours = JSON.parse(dbProvider.businessHours);
-      // console.log(dbProvider.businessHours);
+      var busHours = JSON.parse(dbProvider.businessHours);
+      console.log(busHours);
       res.json(dbProvider);
     });
   });
 
   app.get("/api/providers", function(req, res) {
     db.providers.findAll().then(function(dbProviders) {
-      res.json(dbProviders);
+      return res.json(dbProviders);
     });
   });
 
@@ -25,8 +25,8 @@ module.exports = function(app) {
     db.events.findAll({
       include: [db.providers, db.clients]
     }).then(function(dbEvents) {
-      // var evt = JSON.parse(dbEvents.event);
-      console.log(dbEvents.event);
+      var evt = JSON.parse(dbEvents[0].event);
+      console.log(evt);
       res.json(dbEvents);
     });
   });
