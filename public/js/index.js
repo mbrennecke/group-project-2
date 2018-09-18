@@ -19,7 +19,7 @@ $("#new-client").on("click", function(){
 			'<label for="phone">Phone</label>' +
 			'<input type="tel" class="form-control" id="phone"  placeholder="(555) 555-5555">' +
 		  '</div></div></div>' +
-	  '<button type="submit" class="btn btn-primary">Submit</button>' +
+	  '<button type="submit" class="btn btn-primary" id="clientsubmit">Submit</button>' +
 	'</form>');
 });
 
@@ -132,5 +132,17 @@ $("#new-provider").on("click", function() {'<form>' +
 			'<label for="end">End Time</label>' +
 			'<input type="text" class="form-control" id="end"  placeholder="17:00">' +
 		  '</div></div><div class="col"></div><div class="col"></div></div>'+		  
-	  '<button type="submit" class="btn btn-primary">Submit</button></form>');
+	  '<button type="submit" class="btn btn-primary" id="newProviderForm">Submit</button></form>');
+});
+
+$("#existing-client").on("click", function(){
+	$("#provider-ui").html('<div class="dropdown">' +
+		  '<button class="btn btn-secondary dropdown-toggle btn-lg" type="button" id="providerid" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+			'Please select your Company' +
+		  '</button>' +
+		  '<div class="dropdown-menu" aria-labelledby="providerid">' +
+			'<a class="dropdown-item" href="#" data-val="1">Touch Me</a>' +
+			'<a class="dropdown-item" href="#" data-val="2">Hands On</a>' +
+		  '</div></div>'
+	);
 });
