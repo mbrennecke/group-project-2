@@ -100,26 +100,26 @@ $("#new-provider").on("click", function() {'<form>' +
 		  '</div></div><div class="col-sm-6"></div></div>' +
 		  '<p>Availability:</p>' +
 			'<div class="form-check form-check-inline">' +
-			  '<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option0">' +
-			 '<label class="form-check-label" for="inlineCheckbox1">Sunday</label></div>' +
+			  '<input class="form-check-input" type="checkbox" id="checkbox1" value="option0">' +
+			 '<label class="form-check-label" for="checkbox1">Sunday</label></div>' +
 			'<div class="form-check form-check-inline">' +
-			 '<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option1">' +
-			  '<label class="form-check-label" for="inlineCheckbox2">Monday</label></div>' +
+			 '<input class="form-check-input" type="checkbox" id="checkbox2" value="option1">' +
+			  '<label class="form-check-label" for="checkbox2">Monday</label></div>' +
 			'<div class="form-check form-check-inline">' +
-			  '<input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option2" >' +
-			  '<label class="form-check-label" for="inlineCheckbox3">Tuesday</label></div>' +
+			  '<input class="form-check-input" type="checkbox" id="checkbox3" value="option2" >' +
+			  '<label class="form-check-label" for="checkbox3">Tuesday</label></div>' +
 			'<div class="form-check form-check-inline">' +
-			  '<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option3">' +
-			  '<label class="form-check-label" for="inlineCheckbox1">Wednesday</label></div>' +
+			  '<input class="form-check-input" type="checkbox" id="checkbox4" value="option3">' +
+			  '<label class="form-check-label" for="checkbox4">Wednesday</label></div>' +
 			'<div class="form-check form-check-inline">' +
-			  '<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option4">' +
-			  '<label class="form-check-label" for="inlineCheckbox2">Thursday</label></div>' +
+			  '<input class="form-check-input" type="checkbox" id="checkbox5" value="option4">' +
+			  '<label class="form-check-label" for="checkbox5">Thursday</label></div>' +
 			'<div class="form-check form-check-inline">' +
-			  '<input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option5" >' +
-			  '<label class="form-check-label" for="inlineCheckbox3">Friday</label></div>' +
+			  '<input class="form-check-input" type="checkbox" id="checkbox6" value="option5" >' +
+			  '<label class="form-check-label" for="checkbox6">Friday</label></div>' +
 			'<div class="form-check form-check-inline">' +
-			  '<input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option6" >' +
-			  '<label class="form-check-label" for="inlineCheckbox3">Saturday</label></div>' +
+			  '<input class="form-check-input" type="checkbox" id="checkbox7" value="option6" >' +
+			  '<label class="form-check-label" for="checkbox7">Saturday</label></div>' +
 			'<p></p>' +
 			'<div class="row">' +
 			'<div class="col">' +

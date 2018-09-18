@@ -19,23 +19,29 @@ $(document).on("click", "#newProviderForm", function(event){
 		dow.push(day);
 		}
 	}
+	var dowString = '[' + dow + ']';
+	
+	var hours = {
+		"dow": dowString,
+		"start":  $("#start").val().trim(),
+		"end": $("#start").val().trim()
+	}
 	
 	var providerData = {
-	firstname: $("#firstname").val().trim(),
-	lastname: $("#lastname").val().trim(),
-	email: $("#email").val().trim(),
-	phone: phone, 
-	address: address,
-	city: $("#city").val().trim(),
-	state: $("#state").val().trim(),
-	zip: $("#zip").val().trim(),
-	dow: dow,
-	starttime: $("#start").val().trim(),
-	endtime: $("#start").val().trim()
+	providerBusinessName: $("#business").val().trim(),
+	repFirstName: $("#firstname").val().trim(),
+	repLastName: $("#lastname").val().trim(),
+	providerEmail: $("#email").val().trim(),
+	providerPhone: phone, 
+	providerAddress: address,
+	providerCity: $("#city").val().trim(),
+	providerState: $("#state").val().trim(),
+	providerZip: $("#zip").val().trim(),
+	businessHours:JSON.stringify(hours)
 	}
 	
 	console.log(providerData);
-	
+
 	$.ajax({
     url: "/api/provider",
     method: "POST",
@@ -49,10 +55,10 @@ $(document).on("click", "#clientsubmit", function(event){
   event.preventDefault();
 
   var clientData = {
-    firstname: $("#clientfirstname").val(),
-    lastname: $("#clientlastname").val(),
-    email: $("#clientemail").val(),
-    phone: $("#phone").val(),
+    clientFirstName: $("#clientfirstname").val(),
+    clientLastName: $("#clientlastname").val(),
+    clientEmail: $("#clientemail").val(),
+    clientPhone: $("#phone").val(),
   };
 	
 	console.log(clientData);
