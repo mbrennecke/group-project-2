@@ -3,11 +3,16 @@ html, body {
   padding: 0;
   font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
   font-size: 14px;
+	background-image: url("../img/jessica-fadel-1062020-unsplash.jpg");
+	background-size: cover;
 }
 
 #calendar {
-  max-width: 900px;
-  margin: 40px auto;
+  max-width: 56.25rem;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 5px;
 }
 
 nav.navbar {
@@ -20,10 +25,42 @@ a.navbar-brand {
 	font-weight: 700;
 }
 
+.navbar-light {
+	background-color: #66717E!important;
+}
+
+.navbar-light .navbar-brand {
+	color: #DFF2D8;
+	
+}
+
 .navbar-text {
 	margin-right:4rem;
 }
 
 .dropdown {
 	margin-top: 1rem;
+}
+
+.form-check-inline {
+	margin-right: .2rem;
+}
+
+.btn-secondary {
+	background-color: #DFF2D8;
+	color: #32213A;
+}
+
+.btn-secondary:hover {
+	background-color: #eFF3D8;
+	color: #32213A;
+}
+
+.jumbotron {
+	color: #DFF2D8;
+	background-color: #66717E;
+}
+
+.fas {
+	color: #32213A;
 }
