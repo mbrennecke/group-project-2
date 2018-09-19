@@ -11,25 +11,31 @@ $(function() {
         console.log(events);
         for (var i = 0; i < events.length; i++) {
             calEvents.push(JSON.parse(events[i].event));
-        }
+        };
         console.log(calEvents);
-        $('#calendar').fullCalendar({
-			defaultView: 'agendaWeek',
-            header: {
-              left: 'month,agendaWeek,agendaDay',
-              center: 'title',
-              right: 'prevYear,prev,next,nextYear'
-            },
-            footer: {
-              left: '',
-              center: '',
-              right: 'prev,next'
-            }
-          });
-          $('#calendar').fullCalendar('renderEvents', 
-              calEvents, true
-			
-            );
+        $.get("/api/provider/" + id, function(busHours) {
+            var busHours = JSON.parse(busHours.businessHours);
+            console.log(busHours);
+            $('#calendar').fullCalendar({
+                defaultView: 'agendaWeek',
+                header: {
+                  left: 'month,agendaWeek,agendaDay',
+                  center: 'title',
+                  right: 'prevYear,prev,next,nextYear'
+                },
+                footer: {
+                  left: '',
+                  center: '',
+                  right: 'prev,next'
+                },
+                businessHours: busHours
+              });
+              $('#calendar').fullCalendar('renderEvents', 
+                  calEvents, true
+                
+                );
+        });
+        
     })
 
     

@@ -2,11 +2,9 @@ var db = require("../models");
 
 module.exports = function(app) {
   app.get("/api/provider/:id", function(req, res) {
-    db.events.findAll({
-      where: { providerId: req.params.id }}).then(function(dbProvider) {
-      var id = { id: req.params.id };
-      console.log(dbProvider);
-      res.render("provider", id);
+    db.providers.findOne({
+      where: { id: req.params.id }}).then(function(dbProvider) {
+      res.json(dbProvider);
     });
   });
 
