@@ -1,29 +1,34 @@
 $("#new-client").on("click", function(){
-	$("#client-ui").html('<form class="needs-validation" novalidate><div class="row"><div class="col-sm-3">' +
+	$("#client-new").html('<form class="needs-validation" novalidate><div class="row"><div class="col-sm-3"></div>' +
+	'<div class="col-sm-3">' +
 	'<div class="form-group">' +
 		'<label for="clientfirstname">First name</label>' +
 		'<input type="text" class="form-control" id="clientfirstname" placeholder="" required>' +
-	 '<div class="invalid-feedback">Please provide first name</div>' +
 	 '</div></div>' +
 	  '<div class="col-sm-3">' +
 	  '<div class="form-group">' +
 		'<label for="clientlastname">Last name</label>' +
 		'<input type="text" class="form-control" id="clientlastname" placeholder="" required>' +
-		'<div class="invalid-feedback">Please provide last name</div>' +
 	  '</div></div></div>' +
-	  '<div class="row">' +
+	  '<div class="row"><div class="col-sm-3"></div>' +
 	'<div class="col-sm-3">' +
 	  '<div class="form-group">' +
-		'<label for="clientemail">Email address</label>' +
-		'<input type="email" class="form-control" id="clientemail" aria-describedby="emailHelp" placeholder="" required>' +
-		'<div class="invalid-feedback">Please provide email address</div>' +
-	  '</div></div><div class="col-sm-3">' +
-	 '<div class="form-group">' +
-			'<label for="phone">Phone</label>' +
+	  '<label for="phone">Phone</label>' +
 			'<input type="tel" class="form-control" id="phone"  placeholder="(555) 555-5555" required>' +
-			'<div class="invalid-feedback">Please provide phone number</div>' +
+	  '</div></div></div>' +
+	  '<div class="row"><div class="col-sm-3"></div>' +
+	  '<div class="col-sm-3">' +
+	 '<div class="form-group">' +
+			'<label for="clientemail">Email address</label>' +
+		'<input type="email" class="form-control" id="clientemail" aria-describedby="emailHelp" placeholder="" required>' +
+		  '</div></div>' +
+		  '<div class="col-sm-3">' +
+	 '<div class="form-group">' +
+			'<label for="password">Password</label>' +
+		'<input type="password" class="form-control" id="password"  placeholder="" required>' +
 		  '</div></div></div>' +
-	  '<button type="submit" class="btn btn-secondary" id="clientsubmit">Submit</button>' +
+		  '<div class="row"><div class="col-sm-3"></div>' +
+	  '<button type="submit" class="btn btn-secondary" id="clientsubmit">Submit</button></div>' +
 	'</form>');
 });
 
@@ -44,54 +49,62 @@ $("#existing-client").off().on("click", function () {
 
 });
 
-$("#new-provider").on("click", function() {'<form>' +
-		$("#provider-ui").html('<div class="row">' +
-			'<div class="col">' +
+$("#new-provider").on("click", function() {
+		$("#provider-new").html('<form>' +
+		'<div class="row">' +
+		'<div class="col-sm-3"></div>' +
+			'<div class="col-sm-6">' +
 				'<div class="form-group">' +
 					'<label for="business">Business</label>' +
 					'<input type="text" class="form-control" id="business"  placeholder="">' +
 				'</div></div><div class="col"></div></div>' +
 		  '<div class="row">' +
-			'<div class="col">' +
+		  '<div class="col-sm-3"></div>' +
+			'<div class="col-sm-3">' +
 			'<div class="form-group">' +
 			'<label for="firstname">First Name</label>' +
 			'<input type="text" class="form-control" id="firstname"  placeholder="">' +
 		  '</div></div>' +
-			'<div class="col">' +
+			'<div class="col-sm-3">' +
 			'<div class="form-group">' +
 			'<label for="lastname">Last Name</label>' +
 			'<input type="text" class="form-control" id="lastname"  placeholder="">' +
 		  '</div></div><div class="col"></div><div class="col"></div></div>' +
 		  '<div class="row">' +
-			'<div class="col">' +
+		  '<div class="col-sm-3"></div>' +
+			'<div class="col-sm-3">' +
 				 '<div class="form-group">' +
 			'<label for="email">Email address</label>' +
 			'<input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="">' +
 		  '</div></div>' +
-		  '<div class="col"><div class="form-group">' +
+		  '<div class="col-sm-3"><div class="form-group">' +
 			'<label for="phone">Phone</label>' +
 			'<input type="tel" class="form-control" id="phone"  placeholder="(555) 555-5555">' +
 		  '</div></div>' +
 		 '<div class="col"></div><div class="col"></div></div>' +
 		  '<div class="row">' +
-			'<div class="col">' +
+		  '<div class="col-sm-3"></div>' +
+			'<div class="col-sm-6">' +
 				'<div class="form-group">' +
 					'<label for="address1">Address</label>' +
 					'<input type="text" class="form-control" id="address1"  placeholder="address line 1">' +
 				 '</div></div><div class="col"></div></div>' +
 		  '<div class="row">' +
-			'<div class="col">' +
+			'<div class="col-sm-3"></div>' +
+			'<div class="col-sm-6">' +
 				'<div class="form-group">' +
 				'<label for="address2">Address</label>' +
 				'<input type="text" class="form-control" id="address2"  placeholder="address line 2">' +
 			'</div></div><div class="col"></div></div>' +
 		'<div class="row">' +
+		'<div class="col-sm-3"></div>' +
 			'<div class="col-sm-6">' +
 				'<div class="form-group">' +
 				'<label for="city">City</label>' +
 				'<input type="text" class="form-control" id="city"  placeholder="">' +
 			  '</div></div><div class="col-sm-6"></div></div>' +
 		'<div class="row">' +
+		'<div class="col-sm-3"></div>' +
 			'<div class="col-sm-3">' +
 				'<div class="form-group">' +
 				'<label for="state">State</label>' +
@@ -101,7 +114,11 @@ $("#new-provider").on("click", function() {'<form>' +
 				'<div class="form-group">' +
 			'<label for="zip">Zip</label>' +
 			'<input type="text" class="form-control" id="zip"  placeholder="">' +
-		  '</div></div><div class="col-sm-6"></div></div>' +
+		  '</div></div>' +
+		  '</div>' +
+		  '<div class="row">' +
+		  '<div class="col-sm-3"></div>' +
+		  '<div class="col-sm-6">' +
 		  '<p>Availability:</p>' +
 			'<div class="form-check form-check-inline">' +
 			  '<input class="form-check-input" type="checkbox" id="checkbox1" value="option0">' +
@@ -124,19 +141,22 @@ $("#new-provider").on("click", function() {'<form>' +
 			'<div class="form-check form-check-inline">' +
 			  '<input class="form-check-input" type="checkbox" id="checkbox7" value="option6" >' +
 			  '<label class="form-check-label" for="checkbox7">Saturday</label></div>' +
-			'<p></p>' +
+			'<p></p></div></div>' +
 			'<div class="row">' +
-			'<div class="col">' +
+			'<div class="col-sm-3"></div>' +
+			'<div class="col-sm-3">' +
 				'<div class="form-group">' +
 			'<label for="start">Start Time</label>' +
 			'<input type="text" class="form-control" id="start"  placeholder="08:00">' +
 		  '</div></div>' +
-			'<div class="col">' +
+			'<div class="col-sm-3">' +
 			'<div class="form-group">' +
 			'<label for="end">End Time</label>' +
 			'<input type="text" class="form-control" id="end"  placeholder="17:00">' +
-		  '</div></div><div class="col"></div><div class="col"></div></div>'+		  
-	  '<button type="submit" class="btn btn-secondary" id="newProviderForm">Submit</button></form>');
+		  '</div></div><div class="col"></div><div class="col"></div></div>'+	
+			'<div class="row">' +
+			'<div class="col-sm-3"></div>' +		  
+	  '<button type="submit" class="btn btn-secondary" id="newProviderForm">Submit</button></div></form>');
 });
 
 $("#existing-provider").off().on("click", function () {
