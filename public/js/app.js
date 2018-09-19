@@ -1,4 +1,5 @@
 
+
 $(document).on("click", "#newProviderForm", function(event){
 	event.preventDefault();
 	
@@ -50,21 +51,60 @@ $(document).on("click", "#newProviderForm", function(event){
 
 
 $(document).on("click", "#clientsubmit", function(event){
-  event.preventDefault();
+	
+  event.preventDefault(); 
+  
 
   var clientData = {
-    clientFirstName: $("#clientfirstname").val(),
-    clientLastName: $("#clientlastname").val(),
-    clientEmail: $("#clientemail").val(),
-    clientPhone: $("#phone").val(),
+    clientFirstName: $("#clientfirstname").val().trim(),
+    clientLastName: $("#clientlastname").val().trim(),
+    clientEmail: $("#clientemail").val().trim(),
+    clientPhone: $("#phone").val().trim(),
   };
 	
-	console.log(clientData);
-  
-  $.ajax({
-    url: "/api/client",
-    method: "POST",
-    data: clientData,
-  });
+	
+	  if (validateForm()){
+		$.ajax({
+		  url: "/api/client",
+		  method: "POST",
+		  data: clientData,
+		});
+	  }
 
-});
+	});
+	
+	function validateForm() {
+	  var w = $("#clientfirstname").val();
+	  if (w == "") {
+		  alert("Name must be filled out");
+		  return false;
+	  }
+	  var x = $("#clientlastname").val();
+	  if (x == "") {
+		  alert("Name must be filled out");
+		  return false;
+	  }
+	  var y = $("#clientemail").val();
+	  if (y == "" || !validateEmail (y)) {
+		  alert("Enter a valid email");
+		  return false;
+	  }
+	  var z = $("#phone").val();
+	  if (z == "") {
+		  alert("Enter a valid phone number");
+		  return false;
+	  }
+	  return true;
+	}
+
+	function validateEmail(email) {
+	  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	  return re.test(String(email).toLowerCase());
+	}
+  
+  // $.ajax({
+    // url: "/api/client",
+    // method: "POST",
+    // data: clientData,
+  // });
+
