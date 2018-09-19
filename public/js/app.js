@@ -60,6 +60,7 @@ $(document).on("click", "#clientsubmit", function(event){
     clientLastName: $("#clientlastname").val().trim(),
     clientEmail: $("#clientemail").val().trim(),
     clientPhone: $("#phone").val().trim(),
+	clientPassword: $("#password").val().trim()
   };
 	
 	
@@ -75,33 +76,40 @@ $(document).on("click", "#clientsubmit", function(event){
 	
 	function validateForm() {
 		var failed = 0;
-	  var w = $("#clientfirstname").val();
+	  var w = $("#clientfirstname").val().trim();
 	  if (w == "") {
 		  $("#clientfirstname").css("border-color", "red");
 		  failed += 1;
 	  } else {
 		  $("#clientfirstname").css("border-color", "");
 	  }
-	  var x = $("#clientlastname").val();
+	  var x = $("#clientlastname").val().trim();
 	  if (x == "") {
 		   $("#clientlastname").css("border-color", "red");
 		  failed += 1;
 	  } else {
 		  $("#clientlastname").css("border-color", "");
 	  }
-	  var y = $("#clientemail").val();
+	  var y = $("#clientemail").val().trim();
 	  if (y == "" || !validateEmail (y)) {
 		   $("#clientemail").css("border-color", "red");
 		  failed += 1;
 	  }else {
 		  $("#clientemail").css("border-color", "");
 	  }
-	  var z = $("#phone").val();
+	  var z = $("#phone").val().trim();
 	  if (z == "") {
 		   $("#phone").css("border-color", "red");
 		  failed += 1;
 	  }else {
 		  $("#phone").css("border-color", "");
+	  }
+	  var a = $("#password").val().trim();
+	  if (a == "") {
+		   $("#password").css("border-color", "red");
+		  failed += 1;
+	  }else {
+		  $("#password").css("border-color", "");
 	  }
 	  if (failed == 0) return true;
 	}

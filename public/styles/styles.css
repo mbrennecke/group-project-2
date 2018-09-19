@@ -3,8 +3,7 @@ html, body {
   padding: 0;
   font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
   font-size: 14px;
-	background-image: url("../img/jessica-fadel-1062020-unsplash.jpg");
-	background-size: cover;
+
 }
 
 #calendar {
@@ -31,11 +30,18 @@ a.navbar-brand {
 
 .navbar-light .navbar-brand {
 	color: #DFF2D8;
-	
 }
 
 .navbar-text {
 	margin-right:4rem;
+}
+
+.navbar-light .navbar-nav .active>.nav-link {
+	color: #D1CAA1;
+}
+
+.navbar-light .navbar-nav .nav-link {
+	color: #D4D6B9;
 }
 
 .dropdown {
@@ -57,10 +63,23 @@ a.navbar-brand {
 }
 
 .jumbotron {
-	color: #DFF2D8;
-	background-color: #66717E;
+	background-image: url("../img/rawpixel-633847-unsplash.jpg");
+	background-size: cover;
 }
 
 .fas {
 	color: #32213A;
+}
+
+h1 {
+	background-color: #66717E;
+	color: #DFF2D8;
+	border-radius: 5px;
+	padding:1rem;
+}
+
+form {
+	background-color: #eee;
+	border-radius: 5px;
+	padding:1rem;
 }
