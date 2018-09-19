@@ -74,27 +74,36 @@ $(document).on("click", "#clientsubmit", function(event){
 	});
 	
 	function validateForm() {
+		var failed = 0;
 	  var w = $("#clientfirstname").val();
 	  if (w == "") {
-		  alert("Name must be filled out");
-		  return false;
+		  $("#clientfirstname").css("border-color", "red");
+		  failed += 1;
+	  } else {
+		  $("#clientfirstname").css("border-color", "");
 	  }
 	  var x = $("#clientlastname").val();
 	  if (x == "") {
-		  alert("Name must be filled out");
-		  return false;
+		   $("#clientlastname").css("border-color", "red");
+		  failed += 1;
+	  } else {
+		  $("#clientlastname").css("border-color", "");
 	  }
 	  var y = $("#clientemail").val();
 	  if (y == "" || !validateEmail (y)) {
-		  alert("Enter a valid email");
-		  return false;
+		   $("#clientemail").css("border-color", "red");
+		  failed += 1;
+	  }else {
+		  $("#clientemail").css("border-color", "");
 	  }
 	  var z = $("#phone").val();
 	  if (z == "") {
-		  alert("Enter a valid phone number");
-		  return false;
+		   $("#phone").css("border-color", "red");
+		  failed += 1;
+	  }else {
+		  $("#phone").css("border-color", "");
 	  }
-	  return true;
+	  if (failed == 0) return true;
 	}
 
 	function validateEmail(email) {
