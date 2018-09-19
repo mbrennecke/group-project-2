@@ -1,9 +1,9 @@
 module.exports = function(sequelize, DataTypes) {
   var clients = sequelize.define("clients", {
-    clientFirstName: DataTypes.STRING,
-    clientLastName: DataTypes.STRING,
-    clientEmail: DataTypes.STRING,
-    clientPhone: DataTypes.STRING
+    clientFirstName: { type: DataTypes.STRING, allowNull: false},
+    clientLastName: { type: DataTypes.STRING, allowNull: false},
+    clientEmail: { type: DataTypes.STRING, allowNull: false},
+    clientPhone: { type: DataTypes.STRING, allowNull: false}
   });
   clients.associate = function(models) {
     clients.hasMany(models.events, {

@@ -11,4 +11,9 @@ VALUES ('Matt', 'Brennecke', 'matt@handsonmassage.com', '3035551212'),
 INSERT INTO events (event, clientId, providerId)
 VALUES ('{"title": "Photo discussion","allDay": "false","start": "20180919T120000Z","end": "20180919T130000Z","overlap": "false","color": "red","textColor": "white"}', 1, 2),
 ('{"title": "Tuneup","allDay": "false","start": "20180920T120000Z","end": "20180920T130000Z","overlap": "false","color": "red","textColor": "white"}', 2, 3),
-('{"title": "massage","allDay": "false","start": "20180921T120000Z","end": "20180921T130000Z","overlap": "false","color": "red","textColor": "white"}', 3, 1)
+('{"title": "massage","allDay": "false","start": "20180921T120000Z","end": "20180921T130000Z","overlap": "false","color": "red","textColor": "white"}', 3, 1);
+
+INSERT INTO logins (loginFirstName, loginLastName, loginEmail, loginPassword)
+VALUES ('Matt', 'Brennecke', 'matt@handsonmassage.com', 'mypassword'),
+('Geoffrey', 'Godwin-Austen', 'gga@newview.com', 'mypassword'),
+('Scott', 'Bender', 'scott@mobilerepair.com', 'mypassword')

@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
     var events = sequelize.define("events", {
-        event: DataTypes.STRING(1234),
+        event: { type: DataTypes.STRING(1234), allowNull: false},
     });
     events.associate = function(models) {
         events.belongsTo(models.providers, {
