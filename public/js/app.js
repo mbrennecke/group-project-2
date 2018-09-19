@@ -39,13 +39,19 @@ $(document).on("click", "#newProviderForm", function(event){
 	businessHours:JSON.stringify(hours)
 	}
 	
+	if (providerData.providerBusinessName == "") {
+		providerData.providerBusinessName = providerData.repFirstName + " " + providerData.repLastName;
+	}
+	
 	console.log(providerData);
 
-	$.ajax({
-    url: "/api/provider",
-    method: "POST",
-    data: providerData,
-  });
+	if (validateProvider(providerData)){
+		$.ajax({
+		  url: "/api/provider",
+		  method: "POST",
+		  data: providerData,
+		});
+	  }
 	
 });
 
@@ -64,7 +70,7 @@ $(document).on("click", "#clientsubmit", function(event){
   };
 	
 	
-	  if (validateForm()){
+	  if (validateClient(clientData)){
 		$.ajax({
 		  url: "/api/client",
 		  method: "POST",
@@ -72,56 +78,113 @@ $(document).on("click", "#clientsubmit", function(event){
 		});
 	  }
 
-	});
+});
 	
-	function validateForm() {
-		var failed = 0;
-	  var w = $("#clientfirstname").val().trim();
-	  if (w == "") {
-		  $("#clientfirstname").css("border-color", "red");
-		  failed += 1;
-	  } else {
-		  $("#clientfirstname").css("border-color", "");
-	  }
-	  var x = $("#clientlastname").val().trim();
-	  if (x == "") {
-		   $("#clientlastname").css("border-color", "red");
-		  failed += 1;
-	  } else {
-		  $("#clientlastname").css("border-color", "");
-	  }
-	  var y = $("#clientemail").val().trim();
-	  if (y == "" || !validateEmail (y)) {
-		   $("#clientemail").css("border-color", "red");
-		  failed += 1;
-	  }else {
-		  $("#clientemail").css("border-color", "");
-	  }
-	  var z = $("#phone").val().trim();
-	  if (z == "") {
-		   $("#phone").css("border-color", "red");
-		  failed += 1;
-	  }else {
-		  $("#phone").css("border-color", "");
-	  }
-	  var a = $("#password").val().trim();
-	  if (a == "") {
-		   $("#password").css("border-color", "red");
-		  failed += 1;
-	  }else {
-		  $("#password").css("border-color", "");
-	  }
-	  if (failed == 0) return true;
-	}
+function validateProvider(newObj) {
+	var failed = 0;
+  var w = newObj.repFirstName;
+  if (w == "") {
+	  $("#firstname").css("border-color", "red");
+	  failed += 1;
+  } else {
+	  $("#firstname").css("border-color", "");
+  }
+  var x = newObj.repLastName;;
+  if (x == "") {
+	   $("#lastname").css("border-color", "red");
+	  failed += 1;
+  } else {
+	  $("#lastname").css("border-color", "");
+  }
+  var y = newObj.providerEmail;
+  if (y == "" || !validateEmail (y)) {
+	   $("#email").css("border-color", "red");
+	  failed += 1;
+  }else {
+	  $("#email").css("border-color", "");
+  }
+  var z = newObj.providerPhone;
+  if (z == "") {
+	   $("#phone").css("border-color", "red");
+	  failed += 1;
+  }else {
+	  $("#phone").css("border-color", "");
+  }
+  var a = newObj.providerAddress;;
+  if (a == "") {
+	   $("#address1").css("border-color", "red");
+	  failed += 1;
+  }else {
+	  $("#address1").css("border-color", "");
+  }
+  var a = newObj.providerCity;;
+  if (a == "") {
+	   $("#city").css("border-color", "red");
+	  failed += 1;
+  }else {
+	  $("#city").css("border-color", "");
+  }
+  var a = newObj.providerState;;
+  if (a == "") {
+	   $("#state").css("border-color", "red");
+	  failed += 1;
+  }else {
+	  $("#state").css("border-color", "");
+  }
+  var a = newObj.providerZip;;
+  if (a == "") {
+	   $("#zip").css("border-color", "red");
+	  failed += 1;
+  }else {
+	  $("#zip").css("border-color", "");
+  }
+  if (failed == 0) return true;
+}
 
-	function validateEmail(email) {
-	  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-	  return re.test(String(email).toLowerCase());
-	}
+function validateClient(newObj) {
+	var failed = 0;
+
+  var w = newObj.clientFirstName;
+  if (w == "") {
+	  $("#clientfirstname").css("border-color", "red");
+	  failed += 1;
+  } else {
+	  $("#clientfirstname").css("border-color", "");
+  }
+  var x = newObj.clientLastName;;
+  if (x == "") {
+	   $("#clientlastname").css("border-color", "red");
+	  failed += 1;
+  } else {
+	  $("#clientlastname").css("border-color", "");
+  }
+  var y = newObj.clientEmail;
+  if (y == "" || !validateEmail (y)) {
+	   $("#clientemail").css("border-color", "red");
+	  failed += 1;
+  }else {
+	  $("#clientemail").css("border-color", "");
+  }
+  var z = newObj.clientPhone;
+  if (z == "") {
+	   $("#phone").css("border-color", "red");
+	  failed += 1;
+  }else {
+	  $("#phone").css("border-color", "");
+  }
+  var a = newObj.clientPassword;;
+  if (a == "") {
+	   $("#password").css("border-color", "red");
+	  failed += 1;
+  }else {
+	  $("#password").css("border-color", "");
+  }
+  if (failed == 0) return true;
+}
+
+function validateEmail(email) {
+  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
   
-  // $.ajax({
-    // url: "/api/client",
-    // method: "POST",
-    // data: clientData,
-  // });
 
