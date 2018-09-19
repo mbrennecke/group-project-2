@@ -14,33 +14,21 @@ $(function() {
         }
         console.log(calEvents);
         $('#calendar').fullCalendar({
+			defaultView: 'agendaWeek',
             header: {
-              left: 'month,agendaWeek,agendaDay, custom1',
+              left: 'month,agendaWeek,agendaDay',
               center: 'title',
-              right: 'custom2 prevYear,prev,next,nextYear'
+              right: 'prevYear,prev,next,nextYear'
             },
             footer: {
-              left: 'custom1,custom2',
+              left: '',
               center: '',
               right: 'prev,next'
-            },
-            customButtons: {
-              custom1: {
-                text: 'custom 1',
-                click: function() {
-                  alert('clicked custom button 1!');
-                }
-              },
-              custom2: {
-                text: 'custom 2',
-                click: function() {
-                  alert('clicked custom button 2!');
-                }
-              }
             }
           });
           $('#calendar').fullCalendar('renderEvents', 
               calEvents, true
+			
             );
     })
 
