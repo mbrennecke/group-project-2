@@ -1,23 +1,27 @@
 $("#new-client").on("click", function(){
-	$("#client-ui").html('<form><div class="row"><div class="col-sm-3">' +
+	$("#client-ui").html('<form class="needs-validation" novalidate><div class="row"><div class="col-sm-3">' +
 	'<div class="form-group">' +
 		'<label for="clientfirstname">First name</label>' +
-		'<input type="text" class="form-control" id="clientfirstname" placeholder="">' +
+		'<input type="text" class="form-control" id="clientfirstname" placeholder="" required>' +
+	 '<div class="invalid-feedback">Please provide first name</div>' +
 	 '</div></div>' +
 	  '<div class="col-sm-3">' +
 	  '<div class="form-group">' +
 		'<label for="clientlastname">Last name</label>' +
-		'<input type="text" class="form-control" id="clientlastname" placeholder="">' +
+		'<input type="text" class="form-control" id="clientlastname" placeholder="" required>' +
+		'<div class="invalid-feedback">Please provide last name</div>' +
 	  '</div></div></div>' +
 	  '<div class="row">' +
 	'<div class="col-sm-3">' +
 	  '<div class="form-group">' +
 		'<label for="clientemail">Email address</label>' +
-		'<input type="email" class="form-control" id="clientemail" aria-describedby="emailHelp" placeholder="">' +
+		'<input type="email" class="form-control" id="clientemail" aria-describedby="emailHelp" placeholder="" required>' +
+		'<div class="invalid-feedback">Please provide email address</div>' +
 	  '</div></div><div class="col-sm-3">' +
 	 '<div class="form-group">' +
 			'<label for="phone">Phone</label>' +
-			'<input type="tel" class="form-control" id="phone"  placeholder="(555) 555-5555">' +
+			'<input type="tel" class="form-control" id="phone"  placeholder="(555) 555-5555" required>' +
+			'<div class="invalid-feedback">Please provide phone number</div>' +
 		  '</div></div></div>' +
 	  '<button type="submit" class="btn btn-secondary" id="clientsubmit">Submit</button>' +
 	'</form>');

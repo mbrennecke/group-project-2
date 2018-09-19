@@ -14,8 +14,10 @@ $(function() {
         };
         console.log(calEvents);
         $.get("/api/provider/" + id, function(busHours) {
-            var busHours = JSON.parse(busHours.businessHours);
-            console.log(busHours);
+            var busHoursdisp = JSON.parse(busHours.businessHours);
+			console.log(busHoursdisp);
+			var busStart = busHoursdisp.start;
+			console.log(busStart);
             $('#calendar').fullCalendar({
                 defaultView: 'agendaWeek',
                 header: {
@@ -28,7 +30,8 @@ $(function() {
                   center: '',
                   right: 'prev,next'
                 },
-                businessHours: busHours
+                businessHours: busHoursdisp,
+				minTime: busStart
               });
               $('#calendar').fullCalendar('renderEvents', 
                   calEvents, true
