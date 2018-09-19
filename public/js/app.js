@@ -41,12 +41,13 @@ $(document).on("click", "#newProviderForm", function(event){
 	
 	console.log(providerData);
 
+  if (validateForm()){
 	$.ajax({
     url: "/api/provider",
     method: "POST",
     data: providerData,
   });
-	
+};
 });
 
 
@@ -69,26 +70,82 @@ $(document).on("click", "#clientsubmit", function(event){
 		  method: "POST",
 		  data: clientData,
 		});
-	  }
+	  };
 
 	});
 	
 	function validateForm() {
-		var failed = 0;
-	  var w = $("#clientfirstname").val();
+    var failed = 0;
+
+    var p = $("#firstname").val().trim();
+	  if (p == "") {
+		  $("#firstname").css("border-color", "red");
+		  failed += 1;
+	  } else {
+		  $("#firstname").css("border-color", "");
+    }
+    var q = $("#lastname").val().trim();
+	  if (q == "") {
+		  $("#lastname").css("border-color", "red");
+		  failed += 1;
+	  } else {
+		  $("#lastname").css("border-color", "");
+    }
+    var r = $("#email").val().trim();
+	  if (r == "") {
+		  $("#email").css("border-color", "red");
+		  failed += 1;
+	  } else {
+		  $("#email").css("border-color", "");
+    }
+    var s = $("#business").val().trim();
+	  if (s == "") {
+		  $("#business").css("border-color", "red");
+		  failed += 1;
+	  } else {
+		  $("#business").css("border-color", "");
+    }
+
+    var t = $("#city").val();
+	  if (t == "") {
+		  $("#city").css("border-color", "red");
+		  failed += 1;
+	  } else {
+		  $("#city").css("border-color", "");
+    }
+
+    var u = $("#state").val();
+	  if (u == "") {
+		  $("#state").css("border-color", "red");
+		  failed += 1;
+	  } else {
+		  $("#state").css("border-color", "");
+    }
+
+    var v = $("#zip").val();
+	  if (v == "") {
+		  $("#zip").css("border-color", "red");
+		  failed += 1;
+	  } else {
+		  $("#zip").css("border-color", "");
+    }
+    
+    var w = $("#clientfirstname").val();
 	  if (w == "") {
 		  $("#clientfirstname").css("border-color", "red");
 		  failed += 1;
 	  } else {
 		  $("#clientfirstname").css("border-color", "");
-	  }
+    }
+    
 	  var x = $("#clientlastname").val();
 	  if (x == "") {
 		   $("#clientlastname").css("border-color", "red");
 		  failed += 1;
 	  } else {
 		  $("#clientlastname").css("border-color", "");
-	  }
+    }
+    
 	  var y = $("#clientemail").val();
 	  if (y == "" || !validateEmail (y)) {
 		   $("#clientemail").css("border-color", "red");
@@ -111,9 +168,5 @@ $(document).on("click", "#clientsubmit", function(event){
 	  return re.test(String(email).toLowerCase());
 	}
   
-  // $.ajax({
-    // url: "/api/client",
-    // method: "POST",
-    // data: clientData,
-  // });
+  
 
