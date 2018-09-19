@@ -76,11 +76,42 @@ $("#userSubmit").on("click", function (event) {
   };
 
   console.table(userData);
-
-  $.ajax({
-    url: "/api/client",
-    method: "POST",
-    data: userData,
-  });
+ 
+  if (validateForm()){
+    $.ajax({
+      url: "/api/client",
+      method: "POST",
+      data: userData,
+    });
+  }
 
 });
+
+function validateForm() {
+  var w = $("#fname").val();
+  if (w == "") {
+      alert("Name must be filled out");
+      return false;
+  }
+  var x = $("#lname").val();
+  if (x == "") {
+      alert("Name must be filled out");
+      return false;
+  }
+  var y = $("#email").val();
+  if (y == "" || !validateEmail (y)) {
+      alert("Enter a valid email");
+      return false;
+  }
+  var z = $("#phone_num").val();
+  if (z == "") {
+      alert("Enter a valid phone number");
+      return false;
+  }
+  return true;
+};
+
+function validateEmail(email) {
+  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
