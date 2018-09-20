@@ -1,6 +1,6 @@
 $("#new-client").on("click", function(){
-		$("#client-ui").empty();
-	$("#client-new").html('<form class="needs-validation" novalidate><div class="row"><div class="col-sm-3"></div>' +
+		$(".loginbox").empty();
+	$("#newUser").html('<form class="needs-validation" novalidate><div class="row"><div class="col-sm-3"></div>' +
 	'<div class="col-sm-3">' +
 	'<div class="form-group">' +
 		'<label for="clientfirstname">First name</label>' +
@@ -36,8 +36,8 @@ $("#new-client").on("click", function(){
 
 
 $("#new-provider").on("click", function() {
-		$("#provider-ui").empty();
-		$("#provider-new").html('<form>' +
+		$(".loginbox").empty();
+		$("#newUser").html('<form>' +
 		'<div class="row">' +
 		'<div class="col-sm-3"></div>' +
 			'<div class="col-sm-6">' +
@@ -146,19 +146,4 @@ $("#new-provider").on("click", function() {
 	  '<button type="submit" class="btn btn-secondary" id="newProviderForm">Submit</button></div></form>');
 });
 
-$("#existing-provider").off().on("click", function () {
-	$("#provider-new").empty();
-	$.get("/api/providers", function (data) {
-		providers = data;
-	}).then(function () {
-		console.log($("#provider-ui"));
-			var dropdown = '<div class="dropdown d-flex justify-content-center"><button class="btn btn-secondary dropdown-toggle btn-lg" type="button" id="providerid" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Please select your Company</button><div class="dropdown-menu" aria-labelledby="providerid">';
-			for (var i = 0; i < providers.length; i++) {
-				var prov = '<a class="dropdown-item" href="/provider/' + providers[i].id + '" data-val="' + providers[i].id + '">' + providers[i].providerBusinessName + '</a>';
-				console.log(dropdown, prov);
-				dropdown = dropdown + prov;
-			}
-			$("#provider-ui").html(dropdown + '</div></div>');
-	});
 
-});
