@@ -67,9 +67,15 @@ $(document).on("click", "#newProvider", function() {
 			'<input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="">' +
 		  '</div></div>' +
 		  '<div class="col-sm-3"><div class="form-group">' +
+			'<label for="providerPassword">Password</label>' +
+			'<input type="password" class="form-control" id="providerPassword"  placeholder="">' +
+		  '</div></div></div>' +
+		  '<div class="row">' +
+		  '<div class="col-sm-3"></div>' +
+		  '<div class="col-sm-3"><div class="form-group">' +
 			'<label for="phone">Phone</label>' +
 			'<input type="tel" class="form-control" id="phone"  placeholder="(555) 555-5555">' +
-		  '</div></div>' +
+		  '</div></div></div>' +
 		 '<div class="col"></div><div class="col"></div></div>' +
 		  '<div class="row">' +
 		  '<div class="col-sm-3"></div>' +
