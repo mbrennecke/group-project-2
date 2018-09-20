@@ -225,3 +225,5 @@ $("#clientlogin").on("click", function(event){
 		$("#providerlogin").addClass("inactive");
 	}
 })
+
+$("#loginClient").
