@@ -191,7 +191,8 @@ $("#saveAppt").on("click", function () {
   var title = $("#apptText").val();
   var start = $(this).attr("start");
   console.log($(this));
-	var end = moment(start).add($("#duration").val(), "minutes");
+  var end = moment(start).add($("#duration").val(), "minutes");
+  end = moment(end).toISOString(true);
 	console.log($(this).attr("start"), end);
   var event = '{"title": "' + title + '", "allDay": "false", "start": "' + start + '", "end": "' + end + '", "overlap": "false", "color": "blue", "textColor": "white"}';
   var providerId = $("#providerid").text();
@@ -206,7 +207,8 @@ $("#saveAppt").on("click", function () {
     data: newEvent,
   });
   $("#newEvent").modal("hide");
-  location.reload();
+  $("#calendar").fullCalendar('renderEvent', JSON.parse(newEvent.event));
+  // location.reload();
 })
   
 $("#providerlogin").on("click", function(event){
