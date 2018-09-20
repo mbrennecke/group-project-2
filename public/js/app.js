@@ -216,8 +216,9 @@ $("#providerlogin").on("click", function(event){
 	if ($("#providerlogin").hasClass("inactive")){
 		$("#providerlogin").removeClass("inactive");
 		$("#clientlogin").addClass("inactive");
+		$("#emailLogin").text("Provider Email");
 		$("#newUser").empty();
-		$("#newUser").html("<a href="#">New provider click here</a>");
+		$("#anchor").html('<div id="newProvider"><a href="#">New provider click here&nbsp;<i class="fa fa-list-alt" aria-hidden="true"></i></a></div>');
 	}
 })
 
@@ -226,8 +227,9 @@ $("#clientlogin").on("click", function(event){
 	if ($("#clientlogin").hasClass("inactive")){
 		$("#clientlogin").removeClass("inactive");
 		$("#providerlogin").addClass("inactive");
+		$("#emailLogin").text("Client Email");
 		$("#newUser").empty();
-		$("#newUser").html("<a href="#">New client click here</a>");
+		$("#anchor").html('<div id="newClient"><a href="#">New client click here&nbsp;<i class="fa fa-list-alt" aria-hidden="true"></i></a></div>');
 	}
 })
 

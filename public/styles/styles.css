@@ -52,6 +52,10 @@ a.navbar-brand {
 	margin-right: .2rem;
 }
 
+.form-inline {
+	padding: 0;
+}
+
 .btn-secondary {
 	background-color: #DFF2D8;
 	color: #32213A;
@@ -131,5 +135,14 @@ form {
 
 p {
 	margin-bottom: 0;
-	
+}
+
+#newClient>a, #newProvider>a{
+	color: #383B53;
+	text-decoration: none;
+	margin-left: 1rem;
+}
+
+.loginForm {
+	margin-bottom: 1rem;
 }
