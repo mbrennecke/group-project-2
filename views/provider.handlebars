@@ -1,22 +1,49 @@
 {{> header/navbar-client}}
-	
-	<div class="container">
-		<div class="jumbotron">
-		  <h1 class="display-4 d-flex justify-content-center">Welcome to <i class="fas fa-pencil-alt"></i> Pencil Me In!</h1>
-		  
-		  <hr class="my-4">
-		  <div id="client-ui">
-			
-		  </div>
-          <div id="providerid">{{id}}</div>
-          
-		</div>
-        <div class="row">
-            <div class="col-md-12">
-                <div id="calendar">
 
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-4 d-flex justify-content-center">Welcome to <i class="fas fa-pencil-alt"></i> Pencil Me In!</h1>
+
+        <hr class="my-4">
+        <div id="client-ui">
+
+        </div>
+        <div id="providerid">{{id}}</div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="calendar">
+
+            </div>
+        </div>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" id="newEvent">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">New Appointment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <strong><p id="timeslot"></p></strong>
+                    <div class="form-group">
+                        <input class="form-control" id="apptText" type="text" placeholder="Appointment details">
+                        <label for="duration">Duration (mins)</label>
+                        <select class="form-control" id="duration">
+                            <option>30</option>
+                            <option>60</option>
+                            <option>90</option>
+                            <option>120</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="saveAppt">Save appointment</button>
                 </div>
             </div>
         </div>
-	</div>
-
+    </div>
+</div>

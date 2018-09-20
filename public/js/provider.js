@@ -1,5 +1,3 @@
-
-
 $(function() {
 
     var calEvents = [];
@@ -7,40 +5,45 @@ $(function() {
     console.log(id);
     $("#providerid").hide();
 
-    $.get("/api/events/" + id, function(events){
+    $.get("/api/events/" + id, function (events) {
         console.log(events);
         for (var i = 0; i < events.length; i++) {
-            calEvents.push(JSON.parse(events[i].event));
+            var event = JSON.parse(events[i].event);
+            event.title = "Unavailable";
+            calEvents.push(event);
         };
         console.log(calEvents);
-        $.get("/api/provider/" + id, function(busHours) {
+        $.get("/api/provider/" + id, function (busHours) {
             var busHoursdisp = JSON.parse(busHours.businessHours);
-			console.log(busHoursdisp);
-			var busStart = busHoursdisp.start;
-			console.log(busStart);
+            console.log(busHoursdisp);
+            var busStart = busHoursdisp.start;
+            console.log(busStart);
             $('#calendar').fullCalendar({
                 defaultView: 'agendaWeek',
+                nowIndicator: true,
+                dayClick: function(date, jsEvent, view) {
+                    var start = date.format();
+                    $("#newEvent").modal("show");
+                    $("#timeslot").text("New appointment on " + date.format('MMMM Do YYYY, h:mm a'));
+                    $("#saveAppt").attr("start", start);
+                    console.log("clicked on " + date.format(), jsEvent, view);
+                },
                 header: {
-                  left: 'month,agendaWeek,agendaDay',
-                  center: 'title',
-                  right: 'prevYear,prev,next,nextYear'
+                    left: 'month,agendaWeek,agendaDay',
+                    center: 'title',
+                    right: 'prevYear,prev,next,nextYear'
                 },
                 footer: {
-                  left: '',
-                  center: '',
-                  right: 'prev,next'
+                    left: '',
+                    center: '',
+                    right: 'prev,next'
                 },
                 businessHours: busHoursdisp,
-				minTime: busStart
-              });
-              $('#calendar').fullCalendar('renderEvents', 
-                  calEvents, true
-                
-                );
+                minTime: busStart
+            });
+            $('#calendar').fullCalendar('renderEvents',
+                calEvents, true
+            );
         });
-        
     })
-
-    
-  
-  });
+});
