@@ -14,6 +14,16 @@ module.exports = function(app) {
     });
   });
 
+   // app.get("/clients", function(req, res) {
+	// db.providers.findAll({}).then(function(dbClient) {
+		// var hbsObject = {
+		// provider: dbClient,
+		
+		// };
+    // res.render("clients", hbsObject);
+	// });
+  // });
+  
   app.get("/api/clients", function(req, res) {
     db.clients.findAll().then(function(dbClients) {
       res.json(dbClients);

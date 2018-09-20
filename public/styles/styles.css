@@ -77,10 +77,59 @@ h1 {
 	color: #DFF2D8;
 	border-radius: 5px;
 	padding:1rem;
+	margin-bottom: 2rem;
 }
 
 form {
 	background-color: #eee;
 	border-radius: 5px;
 	padding:1rem;
+}
+
+.container {
+	background-color: #eee;
+	padding: 0;
+}
+
+.card {
+	width: 18rem;
+	margin: 0 auto 0;
+	clear:both;
+	border-left: 1px solid #66717E;
+	border-right: 1px solid #66717E;
+	border-top: 1px solid #fff;
+	border-radius: 0;
+	color: #383B53;
+}
+
+.thing  {
+	border-top: 1px solid #66717E;
+	border-left: 1px solid #66717E;
+	border-right: 1px solid #66717E;
+	border-bottom: 1px solid #fff;
+	width:9rem;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+	float: left;
+	background-color: #fff;
+}
+
+.thing p a {
+	color: #383B53;
+	text-decoration: none;
+}
+
+.inactive {
+	background-color: #ccc;
+	border-bottom: 1px solid #66717E;
+}
+
+.loginbox {
+	width: 18rem;
+	margin: 0 auto;
+}
+
+p {
+	margin-bottom: 0;
+	
 }

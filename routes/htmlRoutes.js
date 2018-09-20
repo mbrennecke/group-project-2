@@ -7,6 +7,10 @@ module.exports = function (app) {
   app.get("/", function(req, res) {
       res.render("index");
   });
+  
+    // app.get("/clients", function(req, res) {
+      // res.render("clients");
+  // });
 
   // Load example page and pass in an example by id
   app.get("/providers", function(req, res) {
