@@ -186,5 +186,27 @@ function validateEmail(email) {
   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
 }
+
+$("#saveAppt").on("click", function () {
+  var title = $("#apptText").val();
+  var start = $(this).attr("start");
+  console.log($(this));
+	var end = moment(start).add($("#duration").val(), "minutes");
+	console.log($(this).attr("start"), end);
+  var event = '{"title": "' + title + '", "allDay": "false", "start": "' + start + '", "end": "' + end + '", "overlap": "false", "color": "blue", "textColor": "white"}';
+  var providerId = $("#providerid").text();
+  var newEvent = {
+    event: event,
+    clientId: 1,
+    providerId: providerId
+  }
+	$.ajax({
+    url: "/api/events",
+    method: "POST",
+    data: newEvent,
+  });
+  $("#newEvent").modal("hide");
+  location.reload();
+})
   
 

@@ -31,7 +31,7 @@ module.exports = function(app) {
   });
 
   app.get("/api/events/:id", function(req, res) {
-    db.events.findAll({ where: { id: req.params.id } })
+    db.events.findAll({ where: { providerId: req.params.id } })
     .then(function(events) {
       res.json(events);
     })
@@ -49,6 +49,12 @@ module.exports = function(app) {
       res.json(dbClient);
     });
   });
+
+  app.post("/api/events", function(req, res) {
+    db.events.create(req.body).then(function(event){
+      res.json(event);
+    })
+  })
 
   // Delete an example by id
   app.delete("/api/examples/:id", function(req, res) {
