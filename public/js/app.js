@@ -187,4 +187,19 @@ function validateEmail(email) {
   return re.test(String(email).toLowerCase());
 }
   
+$("#providerlogin").on("click", function(event){
+	event.preventDefault();
+	if ($("#providerlogin").hasClass("inactive")){
+		$("#providerlogin").removeClass("inactive");
+		$("#clientlogin").addClass("inactive");
+		
+	}
+})
 
+$("#clientlogin").on("click", function(event){
+	event.preventDefault();
+	if ($("#clientlogin").hasClass("inactive")){
+		$("#clientlogin").removeClass("inactive");
+		$("#providerlogin").addClass("inactive");
+	}
+})

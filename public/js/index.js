@@ -1,4 +1,5 @@
 $("#new-client").on("click", function(){
+		$("#client-ui").empty();
 	$("#client-new").html('<form class="needs-validation" novalidate><div class="row"><div class="col-sm-3"></div>' +
 	'<div class="col-sm-3">' +
 	'<div class="form-group">' +
@@ -33,6 +34,7 @@ $("#new-client").on("click", function(){
 });
 
 $("#existing-client").off().on("click", function () {
+		$("#client-new").empty();
 	console.log("enter existing client");
 	$.get("/api/providers", function (data) {
 		providers = data;
@@ -50,6 +52,7 @@ $("#existing-client").off().on("click", function () {
 });
 
 $("#new-provider").on("click", function() {
+		$("#provider-ui").empty();
 		$("#provider-new").html('<form>' +
 		'<div class="row">' +
 		'<div class="col-sm-3"></div>' +
@@ -160,6 +163,7 @@ $("#new-provider").on("click", function() {
 });
 
 $("#existing-provider").off().on("click", function () {
+	$("#provider-new").empty();
 	$.get("/api/providers", function (data) {
 		providers = data;
 	}).then(function () {
