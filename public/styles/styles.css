@@ -135,5 +135,14 @@ form {
 
 p {
 	margin-bottom: 0;
-	
+}
+
+#newClient>a, #newProvider>a{
+	color: #383B53;
+	text-decoration: none;
+	margin-left: 1rem;
+}
+
+.loginForm {
+	margin-bottom: 1rem;
 }

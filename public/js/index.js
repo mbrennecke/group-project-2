@@ -1,5 +1,6 @@
-$("#new-client").on("click", function(){
-		$(".loginbox").empty();
+$(document).on("click", "#newClient", function(){
+	event.preventDefault();
+		$(".wholeLogin").empty();
 	$("#newUser").html('<form class="needs-validation" novalidate><div class="row"><div class="col-sm-3"></div>' +
 	'<div class="col-sm-3">' +
 	'<div class="form-group">' +
@@ -35,8 +36,9 @@ $("#new-client").on("click", function(){
 
 
 
-$("#new-provider").on("click", function() {
-		$(".loginbox").empty();
+$(document).on("click", "#newProvider", function() {
+	event.preventDefault();
+		$(".wholeLogin").empty();
 		$("#newUser").html('<form>' +
 		'<div class="row">' +
 		'<div class="col-sm-3"></div>' +
