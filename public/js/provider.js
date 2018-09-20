@@ -9,8 +9,12 @@ $(function() {
         console.log(events);
         for (var i = 0; i < events.length; i++) {
             var event = JSON.parse(events[i].event);
+            // if (clientDisplay) {
             event.title = "Unavailable";
             calEvents.push(event);
+            // } else {
+            //     calEvents.push(event);
+            // }
         };
         console.log(calEvents);
         $.get("/api/provider/" + id, function (busHours) {
@@ -26,7 +30,6 @@ $(function() {
                     $("#newEvent").modal("show");
                     $("#timeslot").text("New appointment on " + date.format('MMMM Do YYYY, h:mm a'));
                     $("#saveAppt").attr("start", start);
-                    console.log("clicked on " + date.format(), jsEvent, view);
                 },
                 header: {
                     left: 'month,agendaWeek,agendaDay',
