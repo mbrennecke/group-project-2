@@ -37,7 +37,14 @@ $(document).on("click", "#newProviderForm", function(event){
 	providerState: $("#state").val().trim(),
 	providerZip: $("#zip").val().trim(),
 	businessHours:JSON.stringify(hours)
-	}
+  }
+  
+  var providerLogin = {
+    loginFirstName: $("#firstname").val().trim(),
+	  loginLastName: $("#lastname").val().trim(),
+    loginEmail: $("#email").val().trim(),
+    loginPassword: $("#providerPassword").val().trim()
+  }
 	
 	if (providerData.providerBusinessName == "") {
 		providerData.providerBusinessName = providerData.repFirstName + " " + providerData.repLastName;
@@ -50,7 +57,12 @@ $(document).on("click", "#newProviderForm", function(event){
 		  url: "/api/provider",
 		  method: "POST",
 		  data: providerData,
-		});
+    });
+    $.ajax({
+      url: "/auth/register",
+      method: "POST",
+      data: providerLogin,
+    });
 	  }
 	
 });
@@ -66,16 +78,27 @@ $(document).on("click", "#clientsubmit", function(event){
     clientLastName: $("#clientlastname").val().trim(),
     clientEmail: $("#clientemail").val().trim(),
     clientPhone: $("#phone").val().trim(),
-	clientPassword: $("#password").val().trim()
+	  clientPassword: $("#password").val().trim()
   };
-	
+  
+  var clientLogin = {
+    loginFirstName: $("#clientfirstname").val().trim(),
+    loginLastName: $("#clientlastname").val().trim(),
+    loginEmail: $("#clientemail").val().trim(),
+    loginPassword: $("#password").val().trim()
+  }
 	
 	  if (validateClient(clientData)){
 		$.ajax({
 		  url: "/api/client",
 		  method: "POST",
 		  data: clientData,
-		});
+    });
+    $.ajax({
+      url: "/auth/register",
+      method: "POST",
+      data: clientLogin,
+    });
 	  }
 
 });
