@@ -65,6 +65,7 @@ a.navbar-brand {
 .jumbotron {
 	background-image: url("../img/rawpixel-633847-unsplash.jpg");
 	background-size: cover;
+	background-color: rgba(255, 255, 255, 0.6);
 }
 
 .fas {
