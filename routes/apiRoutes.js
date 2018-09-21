@@ -14,6 +14,16 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/api/calendar/:email", function(req, res) {
+    console.log("in calendar api call");
+    db.providers.findOne({
+      where: { providerEmail: req.params.email }
+    }).then (function(provider) {
+      console.log(provider);
+      res.json(provider);
+    })
+  });
+
    // app.get("/clients", function(req, res) {
 	// db.providers.findAll({}).then(function(dbClient) {
 		// var hbsObject = {

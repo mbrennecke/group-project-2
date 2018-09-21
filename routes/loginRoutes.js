@@ -51,6 +51,7 @@ module.exports = function (app) {
                 if (!logins) return res.status(404).send("No user found.");
                 // res.status(200).send(user); Comment this out!
                 res.status(200).send(logins.dataValues);
+                console.log(logins.dataValues);
             });
     });
 

@@ -23,7 +23,7 @@ $(document).on("click", "#newProviderForm", function(event){
 	var hours = {
 		"dow": dowString,
 		"start":  $("#start").val().trim(),
-		"end": $("#start").val().trim()
+		"end": $("#end").val().trim()
 	}
 	
 	var providerData = {
@@ -38,13 +38,17 @@ $(document).on("click", "#newProviderForm", function(event){
 	providerZip: $("#zip").val().trim(),
 	businessHours:JSON.stringify(hours)
   }
+
+  var email = $("#email").val().trim();
+  var password = $("#providerPassword").val().trim();
   
   var providerLogin = {
-    loginFirstName: $("#firstname").val().trim(),
-	  loginLastName: $("#lastname").val().trim(),
-    loginEmail: $("#email").val().trim(),
-    loginPassword: $("#providerPassword").val().trim()
+    firstname: $("#firstname").val().trim(),
+	  lastname: $("#lastname").val().trim(),
+    email: email,
+    password: password,
   }
+
 	
 	if (providerData.providerBusinessName == "") {
 		providerData.providerBusinessName = providerData.repFirstName + " " + providerData.repLastName;
@@ -62,8 +66,28 @@ $(document).on("click", "#newProviderForm", function(event){
       url: "/auth/register",
       method: "POST",
       data: providerLogin,
-    });
-	  }
+    }).then(function(data){
+      var login = {
+        email: email,
+        password: password
+      };
+      $.post("/auth/login", login).done(function(data) {
+        console.log(data);
+        localStorage.setItem("token", data.token);
+        console.log(localStorage.token);
+        var provEmail = "/api/calendar/" + email;
+        $("#newUser").empty();
+        $.get(provEmail, function (data) {
+               console.log(data);
+        }).then(function(data) {
+          var provUrl = "/provider/" + data.id;
+          window.location.href = provUrl;
+        })
+      })
+    })
+    }
+    
+    
 	
 });
 
@@ -82,10 +106,15 @@ $(document).on("click", "#clientsubmit", function(event){
   };
   
   var clientLogin = {
-    loginFirstName: $("#clientfirstname").val().trim(),
-    loginLastName: $("#clientlastname").val().trim(),
-    loginEmail: $("#clientemail").val().trim(),
-    loginPassword: $("#password").val().trim()
+    firstname: $("#clientfirstname").val().trim(),
+    lastname: $("#clientlastname").val().trim(),
+    email: $("#clientemail").val().trim(),
+    password: $("#password").val().trim()
+  }
+
+  var login = {
+    email: $("#clientemail").val().trim(),
+    password: $("#password").val().trim()
   }
 	
 	  if (validateClient(clientData)){
@@ -98,8 +127,32 @@ $(document).on("click", "#clientsubmit", function(event){
       url: "/auth/register",
       method: "POST",
       data: clientLogin,
+    }).done(function() {
+      $.ajax({
+        url: "/auth/login",
+        method: "POST",
+        data: login,
+      })
+    })
+    
+    }
+    
+    $("#newUser").empty();
+    // $("#wholeLogin").off().on("click", function () {
+      $.get("/api/providers", function (data) {
+        providers = data;
+      }).then(function () {
+        console.log($("#wholeLogin"));
+          var dropdown = '<div class="dropdown d-flex justify-content-center"><button class="btn btn-secondary dropdown-toggle btn-lg" type="button" id="providerid" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Please select your Company</button><div class="dropdown-menu" aria-labelledby="providerid">';
+          for (var i = 0; i < providers.length; i++) {
+            var prov = '<a class="dropdown-item" href="/provider/' + providers[i].id + '" data-val="' + providers[i].id + '">' + providers[i].providerBusinessName + '</a>';
+            console.log(dropdown, prov);
+            dropdown = dropdown + prov;
+          }
+          $(".wholeLogin").html(dropdown + '</div></div>');
+      // });
+    
     });
-	  }
 
 });
 	
@@ -231,7 +284,8 @@ $("#saveAppt").on("click", function () {
   });
   $("#newEvent").modal("hide");
   $("#calendar").fullCalendar('renderEvent', JSON.parse(newEvent.event));
-  // location.reload();
+  $("#apptText").val("");
+
 })
   
 $("#providerlogin").on("click", function(event){
@@ -242,7 +296,9 @@ $("#providerlogin").on("click", function(event){
 		$("#emailLogin").text("Provider Email");
 		$("#newUser").empty();
 		$("#anchor").html('<div id="newProvider"><a href="#">New provider click here&nbsp;<i class="fa fa-list-alt" aria-hidden="true"></i></a></div>');
-	}
+    $("#rendButton").empty();
+    $("#rendButton").html('<button type="button" class="btn btn-secondary" id="loginProvider">Log in</button>');
+  }
 })
 
 $("#clientlogin").on("click", function(event){
@@ -253,7 +309,78 @@ $("#clientlogin").on("click", function(event){
 		$("#emailLogin").text("Client Email");
 		$("#newUser").empty();
 		$("#anchor").html('<div id="newClient"><a href="#">New client click here&nbsp;<i class="fa fa-list-alt" aria-hidden="true"></i></a></div>');
-	}
+    $("#rendButton").empty();
+    $("#rendButton").html('<button type="button" class="btn btn-secondary" id="loginClient">Log in</button>');
+  }
+})
+
+$("#loginClient").on("click", function(event) {
+  event.preventDefault();
+  var email = $("#inputEmail1").val().trim();
+  var password = $("#exampleInputPassword1").val().trim();
+  var login = {
+    email: email,
+    password: password
+  };
+  $.post("/auth/login", login).done(function(data) {
+    console.log(data);
+    localStorage.setItem("token", data.token);
+    console.log(localStorage.token);
+    $("#newUser").empty();
+    $.ajax({
+      type: "GET",
+      beforeSend: function(request) {
+        request.setRequestHeader("x-access-token", localStorage.token);
+      },
+      url: "/api/providers",
+      success: function(data) {
+        providers = data;
+      }
+    }).then(function () {
+        console.log($("#wholeLogin"));
+          var dropdown = '<div class="dropdown d-flex justify-content-center"><button class="btn btn-secondary dropdown-toggle btn-lg" type="button" id="providerid" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Please select your Company</button><div class="dropdown-menu" aria-labelledby="providerid">';
+          for (var i = 0; i < providers.length; i++) {
+            var prov = '<a class="dropdown-item" href="/provider/' + providers[i].id + '" data-val="' + providers[i].id + '">' + providers[i].providerBusinessName + '</a>';
+            console.log(dropdown, prov);
+            dropdown = dropdown + prov;
+          }
+          $(".wholeLogin").html(dropdown + '</div></div>');    
+    });
+  })
+})
+
+$(document).on("click", "#loginProvider", function (event) {
+  event.preventDefault();
+  var email = $("#inputEmail1").val().trim();
+  var password = $("#exampleInputPassword1").val().trim();
+  var login = {
+    email: email,
+    password: password
+  };
+  $.post("/auth/login", login).done(function (data) {
+    console.log(data);
+    localStorage.setItem("token", data.token);
+    console.log(localStorage.token);
+    $("#newUser").empty();
+    var provEmail = "/api/calendar/" + email;
+    $.get(provEmail, function (data) {
+      console.log(data);
+    }).then(function (data) {
+      var provUrl = "/provider/" + data.id;
+      window.location.href = provUrl;
+    })
+  })
+})
+
+$("#logout").on("click", function(event) {
+  event.preventDefault();
+  $.ajax({
+    type: "GET",
+    url: "/auth/logout",
+  }).then(function() {
+    localStorage.removeItem("token");
+    window.location.href = "/";
+  })
 })
 
 

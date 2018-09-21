@@ -47,6 +47,7 @@ $(function() {
             $('#calendar').fullCalendar('renderEvents',
                 calEvents, true
             );
+            $("#calProvider").text("Calendar for " + busHours.providerBusinessName);
         });
     })
 });
