@@ -23,22 +23,20 @@ module.exports = function(app) {
       res.json(provider);
     })
   });
-
-   // app.get("/clients", function(req, res) {
-	// db.providers.findAll({}).then(function(dbClient) {
-		// var hbsObject = {
-		// provider: dbClient,
-		
-		// };
-    // res.render("clients", hbsObject);
-	// });
-  // });
   
   app.get("/api/clients", function(req, res) {
     db.clients.findAll().then(function(dbClients) {
       res.json(dbClients);
     });
   });
+
+  app.get("/api/client/:email", function (req, res) {
+    db.clients.findOne({
+      where: { clientEmail: req.params.email }
+    }).then (function(client) {
+      res.json(client);
+    })
+  })
 
   app.get("/api/events", function(req, res) {
     db.events.findAll({
@@ -57,7 +55,6 @@ module.exports = function(app) {
     })
   })
 
-  // Create a new example
   app.post("/api/provider", function(req, res) {
     db.providers.create(req.body).then(function(dbProvider) {
       res.json(dbProvider);
@@ -75,11 +72,4 @@ module.exports = function(app) {
       res.json(event);
     })
   })
-
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });
 };
