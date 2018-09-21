@@ -268,29 +268,47 @@ $("#saveAppt").on("click", function () {
   var start = $(this).attr("start");
   var end = moment(start).add($("#duration").val(), "minutes");
   end = moment(end).toISOString(true);
-  $.ajax({
-    url: "/api/client/" + localStorage.getItem("email"),
-    method: "GET",
-  }).then(function(data) {
-    var event = '{"title": "' + title + '", "allDay": "false", "start": "' + start + '", "end": "' + end + '", "overlap": "false", "color": "blue", "textColor": "white"}';
-    var providerId = $("#providerid").text();
-    var clientId = data.id;
-    var newEvent = {
-      event: event,
-      clientId: clientId,
-      providerId: providerId
-    }
+  if (localStorage.email) {
     $.ajax({
-      url: "/api/events",
-      method: "POST",
-      data: newEvent,
+      url: "/api/client/" + localStorage.getItem("email"),
+      method: "GET",
+    }).then(function(data) {
+      var event = '{"title": "' + title + '", "allDay": "false", "start": "' + start + '", "end": "' + end + '", "overlap": "false", "color": "blue", "textColor": "white"}';
+      var providerId = $("#providerid").text();
+      var clientId = data.id;
+      var newEvent = {
+        event: event,
+        clientId: clientId,
+        providerId: providerId
+      }
+      $.ajax({
+        url: "/api/events",
+        method: "POST",
+        data: newEvent,
+      });
+      $("#newEvent").modal("hide");
+      $("#calendar").fullCalendar('renderEvent', JSON.parse(newEvent.event));
+      $("#apptText").val("");
+
     });
-    $("#newEvent").modal("hide");
-    $("#calendar").fullCalendar('renderEvent', JSON.parse(newEvent.event));
-    $("#apptText").val("");
-
-  });
-
+  } else {
+      var event = '{"title": "' + title + '", "allDay": "false", "start": "' + start + '", "end": "' + end + '", "overlap": "false", "color": "blue", "textColor": "white"}';
+      var providerId = $("#providerid").text();
+      var clientId = "1";
+      var newEvent = {
+        event: event,
+        clientId: clientId,
+        providerId: providerId
+      }
+      $.ajax({
+        url: "/api/events",
+        method: "POST",
+        data: newEvent,
+      });
+      $("#newEvent").modal("hide");
+      $("#calendar").fullCalendar('renderEvent', JSON.parse(newEvent.event));
+      $("#apptText").val("");
+  };
 })
   
 $("#providerlogin").on("click", function(event){
