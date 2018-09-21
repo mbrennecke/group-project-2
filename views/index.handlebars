@@ -1,43 +1,57 @@
 {{> header/navbar-client}}
-	
-	<div class="container">
-		<div class="jumbotron">
-		  <h1 class="display-4 d-flex justify-content-center">Welcome to <i class="fas fa-pencil-alt"></i> Pencil Me In!</h1>
-		  <div class="wholeLogin">
-		  <div class="loginbox">
-		  <div class="thing" id="clientlogin">
-			<p class="text-center" ><a href="#" >Client</a></p>
-		  </div>
-		  <div class="thing inactive" id="providerlogin">
-			<p class="text-center"><a href="#" >Provider</a></p>
-		  </div>
-		  </div>
-		  <div class="card" >
-		  <div class="card-body">
-			<form class="loginForm">
-			  <div class="form-group">
-				<label for="inputEmail1" id="emailLogin">Client email</label>
-				<input type="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-			  </div>
-			  <div class="form-group">
-				<label for="exampleInputPassword1">Password</label>
-				<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-			  </div>
-				<div id="rendButton">
-			  <button type="button" class="btn btn-secondary" id="loginClient">Log in</button>
-			</div>
-			</form>
-			<div id="anchor" >
-				<div id="newClient">
-					<a href="#">New client click here&nbsp;<i class="fa fa-list-alt" aria-hidden="true"></i></a>
+
+<div class="container">
+	<div class="jumbotron">
+		<h1 class="display-4 d-flex justify-content-center">Welcome to <i class="fas fa-pencil-alt"></i> Pencil Me In!</h1>
+		<div class="wholeLogin">
+			<div class="loginbox">
+				<div class="thing" id="clientlogin">
+					<p class="text-center"><a href="#">Client</a></p>
+				</div>
+				<div class="thing inactive" id="providerlogin">
+					<p class="text-center"><a href="#">Provider</a></p>
 				</div>
 			</div>
-		  </div>
+			<div class="card">
+				<div class="card-body">
+					<form class="loginForm">
+						<div class="form-group">
+							<label for="inputEmail1" id="emailLogin">Client email</label>
+							<input type="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword1">Password</label>
+							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+						</div>
+						<div id="rendButton">
+							<button type="button" class="btn btn-secondary" id="loginClient">Log in</button>
+						</div>
+					</form>
+					<div id="anchor">
+						<div id="newClient">
+							<a href="#">New client click here&nbsp;<i class="fa fa-list-alt" aria-hidden="true"></i></a>
+						</div>
+					</div>
+				</div>
 
+			</div>
 		</div>
-		</div>
-		  </div>
-		  <div id="newUser"></div>
-		  
 	</div>
+	<div id="newUser"></div>
+	<div class="modal" tabindex="-1" role="dialog" id="loginProblem">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Error</h5>
+                </div>
+                <div class="modal-body">
+                    <p id="errorText"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+</div>

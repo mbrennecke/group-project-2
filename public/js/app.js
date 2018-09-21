@@ -314,7 +314,7 @@ $("#clientlogin").on("click", function(event){
   }
 })
 
-$("#loginClient").on("click", function(event) {
+$("#loginClient").on("click", function (event) {
   event.preventDefault();
   var email = $("#inputEmail1").val().trim();
   var password = $("#exampleInputPassword1").val().trim();
@@ -322,30 +322,42 @@ $("#loginClient").on("click", function(event) {
     email: email,
     password: password
   };
-  $.post("/auth/login", login).done(function(data) {
-    console.log(data);
-    localStorage.setItem("token", data.token);
-    console.log(localStorage.token);
-    $("#newUser").empty();
-    $.ajax({
-      type: "GET",
-      beforeSend: function(request) {
-        request.setRequestHeader("x-access-token", localStorage.token);
-      },
-      url: "/api/providers",
-      success: function(data) {
-        providers = data;
-      }
-    }).then(function () {
+  $.ajax({
+    type: "POST",
+    url: "/auth/login",
+    data: login,
+    success: function (data) {
+      localStorage.setItem("token", data.token);
+      console.log(localStorage.token);
+      $("#newUser").empty();
+      $.ajax({
+        type: "GET",
+        beforeSend: function (request) {
+          request.setRequestHeader("x-access-token", localStorage.token);
+        },
+        url: "/api/providers",
+        success: function (data) {
+          providers = data;
+        }
+      }).then(function () {
         console.log($("#wholeLogin"));
-          var dropdown = '<div class="dropdown d-flex justify-content-center"><button class="btn btn-secondary dropdown-toggle btn-lg" type="button" id="providerid" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Please select your Company</button><div class="dropdown-menu" aria-labelledby="providerid">';
-          for (var i = 0; i < providers.length; i++) {
-            var prov = '<a class="dropdown-item" href="/provider/' + providers[i].id + '" data-val="' + providers[i].id + '">' + providers[i].providerBusinessName + '</a>';
-            console.log(dropdown, prov);
-            dropdown = dropdown + prov;
-          }
-          $(".wholeLogin").html(dropdown + '</div></div>');    
-    });
+        var dropdown = '<div class="dropdown d-flex justify-content-center"><button class="btn btn-secondary dropdown-toggle btn-lg" type="button" id="providerid" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Please select your Company</button><div class="dropdown-menu" aria-labelledby="providerid">';
+        for (var i = 0; i < providers.length; i++) {
+          var prov = '<a class="dropdown-item" href="/provider/' + providers[i].id + '" data-val="' + providers[i].id + '">' + providers[i].providerBusinessName + '</a>';
+          console.log(dropdown, prov);
+          dropdown = dropdown + prov;
+        }
+        $(".wholeLogin").html(dropdown + '</div></div>');
+      });
+    },
+    complete: function (data, xhr) {
+      console.log(data, "xhr = " + xhr);
+      if (xhr === "error") {
+        $("#loginProblem").modal("show");
+        $("#errorText").text("Wrong username or password.");
+      }
+    },
+    
   })
 })
 
@@ -357,18 +369,27 @@ $(document).on("click", "#loginProvider", function (event) {
     email: email,
     password: password
   };
-  $.post("/auth/login", login).done(function (data) {
-    console.log(data);
-    localStorage.setItem("token", data.token);
-    console.log(localStorage.token);
-    $("#newUser").empty();
-    var provEmail = "/api/calendar/" + email;
-    $.get(provEmail, function (data) {
-      console.log(data);
-    }).then(function (data) {
-      var provUrl = "/provider/" + data.id;
-      window.location.href = provUrl;
-    })
+  $.ajax({
+    type: "POST",
+    url: "/auth/login",
+    data: login,
+    success: function (data) {
+      localStorage.setItem("token", data.token);
+      $("#newUser").empty();
+      var provEmail = "/api/calendar/" + email;
+      $.get(provEmail, function (data) {
+      }).then(function (data) {
+        var provUrl = "/provider/" + data.id;
+        window.location.href = provUrl;
+      })
+    },
+    complete: function (data, xhr) {
+      console.log(data, "xhr = " + xhr);
+      if (xhr === "error") {
+        $("#loginProblem").modal("show");
+        $("#errorText").text("Wrong username or password.");
+      }
+    },
   })
 })
 
