@@ -9,12 +9,12 @@ $(function() {
         console.log(events);
         for (var i = 0; i < events.length; i++) {
             var event = JSON.parse(events[i].event);
-            // if (clientDisplay) {
+            if (localStorage.email) {
             event.title = "Unavailable";
             calEvents.push(event);
-            // } else {
-            //     calEvents.push(event);
-            // }
+            } else {
+                calEvents.push(event);
+            }
         };
         console.log(calEvents);
         $.get("/api/provider/" + id, function (busHours) {
