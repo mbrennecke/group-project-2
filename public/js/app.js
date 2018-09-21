@@ -266,25 +266,30 @@ function validateEmail(email) {
 $("#saveAppt").on("click", function () {
   var title = $("#apptText").val();
   var start = $(this).attr("start");
-  console.log($(this));
   var end = moment(start).add($("#duration").val(), "minutes");
   end = moment(end).toISOString(true);
-	console.log($(this).attr("start"), end);
-  var event = '{"title": "' + title + '", "allDay": "false", "start": "' + start + '", "end": "' + end + '", "overlap": "false", "color": "blue", "textColor": "white"}';
-  var providerId = $("#providerid").text();
-  var newEvent = {
-    event: event,
-    clientId: 1,
-    providerId: providerId
-  }
-	$.ajax({
-    url: "/api/events",
-    method: "POST",
-    data: newEvent,
+  $.ajax({
+    url: "/api/client/" + localStorage.getItem("email"),
+    method: "GET",
+  }).then(function(data) {
+    var event = '{"title": "' + title + '", "allDay": "false", "start": "' + start + '", "end": "' + end + '", "overlap": "false", "color": "blue", "textColor": "white"}';
+    var providerId = $("#providerid").text();
+    var clientId = data.id;
+    var newEvent = {
+      event: event,
+      clientId: clientId,
+      providerId: providerId
+    }
+    $.ajax({
+      url: "/api/events",
+      method: "POST",
+      data: newEvent,
+    });
+    $("#newEvent").modal("hide");
+    $("#calendar").fullCalendar('renderEvent', JSON.parse(newEvent.event));
+    $("#apptText").val("");
+
   });
-  $("#newEvent").modal("hide");
-  $("#calendar").fullCalendar('renderEvent', JSON.parse(newEvent.event));
-  $("#apptText").val("");
 
 })
   
@@ -317,13 +322,14 @@ $("#clientlogin").on("click", function(event){
 $("#loginClient").on("click", function (event) {
   event.preventDefault();
   var email = $("#inputEmail1").val().trim();
+  localStorage.setItem("email", email);
   var password = $("#exampleInputPassword1").val().trim();
   var login = {
     email: email,
     password: password
   };
   $.ajax({
-    type: "POST",
+    method: "POST",
     url: "/auth/login",
     data: login,
     success: function (data) {
@@ -370,7 +376,7 @@ $(document).on("click", "#loginProvider", function (event) {
     password: password
   };
   $.ajax({
-    type: "POST",
+    method: "POST",
     url: "/auth/login",
     data: login,
     success: function (data) {
@@ -399,7 +405,7 @@ $("#logout").on("click", function(event) {
     type: "GET",
     url: "/auth/logout",
   }).then(function() {
-    localStorage.removeItem("token");
+    localStorage.clear();
     window.location.href = "/";
   })
 })
