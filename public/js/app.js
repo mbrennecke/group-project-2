@@ -116,7 +116,7 @@ $(document).on("click", "#clientsubmit", function(event){
     email: $("#clientemail").val().trim(),
     password: $("#password").val().trim()
   }
-	
+	localStorage.setItem("email", login.email);
 	  if (validateClient(clientData)){
 		$.ajax({
 		  url: "/api/client",
