@@ -28,7 +28,7 @@ module.exports = function (app) {
     app.post('/auth/login', function (req, res) {
         db.logins.findOne({ where: { loginEmail: req.body.email } }).then(function (logins, err) {
             if (err) return res.status(500).send('Error on the server.');
-            if (!logins) return res.status(404).send('No user found.');
+            if (!logins) return res.status(404).send({auth: false});
             console.log(logins);
             var passwordIsValid = bcrypt.compareSync(req.body.password, logins.dataValues.loginPassword);
             if (!passwordIsValid) return res.status(401).send({ auth: false, token: null });
