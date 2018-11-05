@@ -2,24 +2,25 @@
 var db = require("../models");
 var verifyToken = require('../public/js/verifyToken.js');
 
-module.exports = function (app) {
-  // Load index page
+module.exports = function(app) {
 
+  // Load index page
   app.get("/", function(req, res) {
-      res.render("index");
+    res.render("index");
   });
-  
-    // app.get("/clients", function(req, res) {
-      // res.render("clients");
+  // app.get("/clients", function(req, res) {
+  // res.render("clients");
   // });
 
   // Load example page and pass in an example by id
-  app.get("/providers", function(req, res) {
-      res.render("providers");
+  app.get("/providers", verifyToken, function(req, res) {
+    console.log(req);
+    res.render("providers");
   });
 
-  app.get("/provider/:id", function(req, res) {
-    var id = { id: req.params.id };   
+  app.get("/provider/:id", verifyToken, function(req, res) {
+    console.log(req);
+    var id = { id: req.params.id };
     res.render("provider", id);
   })
 
