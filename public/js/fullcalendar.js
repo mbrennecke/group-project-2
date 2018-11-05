@@ -92,7 +92,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
 /*
 derived from:
 https://github.com/Microsoft/tslib/blob/v1.6.0/tslib.js
-
 only include the helpers we need, to keep down filesize
 */
 var extendStatics = Object.setPrototypeOf ||
@@ -1177,7 +1176,6 @@ EventSource.defineStandardProps({
 /*
 Utility methods for easily listening to events on another object,
 and more importantly, easily unlistening from them.
-
 USAGE:
   import { default as ListenerMixin, ListenerInterface } from './ListenerMixin'
 in class:
@@ -2153,7 +2151,6 @@ var neededCount = 0;
 Listens to document and window-level user-interaction events, like touch events and mouse events,
 and fires these events as-is to whoever is observing a GlobalEmitter.
 Best when used as a singleton via GlobalEmitter.get()
-
 Normalizes mouse/touch events. For examples:
 - ignores the the simulated mouse events that happen after a quick tap: mousemove+mousedown+mouseup+click
 - compensates for various buggy scenarios where a touchend does not fire
@@ -5452,7 +5449,6 @@ var util_1 = __webpack_require__(4);
 /*
 A cache for the left/right/top/bottom/width/height values for one or more elements.
 Works with both offset (from topleft document) and position (from offsetParent).
-
 options:
 - els
 - isHorizontal

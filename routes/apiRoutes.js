@@ -1,4 +1,5 @@
 var db = require("../models");
+var verifyToken = require('../public/js/verifyToken.js');
 
 module.exports = function(app) {
   app.get("/api/provider/:id", function(req, res) {
@@ -8,7 +9,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/providers", function(req, res) {
+  app.get("/api/providers", verifyToken, function(req, res) {
     db.providers.findAll().then(function(dbProviders) {
       return res.json(dbProviders);
     });
